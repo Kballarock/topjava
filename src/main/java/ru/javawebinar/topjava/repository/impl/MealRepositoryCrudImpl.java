@@ -5,6 +5,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -30,26 +31,31 @@ public class MealRepositoryCrudImpl implements MealRepository {
 
     @Override
     public void addMeal(Meal meal) {
-
+        map.put(meal.getId(), meal);
     }
 
     @Override
     public void updateMeal(Meal meal) {
-
+        map.put(meal.getId(), meal);
     }
 
     @Override
     public void removeMeal(Meal meal) {
-
+        map.remove(meal.getId());
     }
 
     @Override
     public void removeMeal(long id) {
-
+        map.remove(id);
     }
 
     @Override
     public Meal getMeal(long id) {
-        return null;
+        return map.get(id);
+    }
+
+    @Override
+    public List<Meal> getAll() {
+        return new ArrayList<>(map.values());
     }
 }
