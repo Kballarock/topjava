@@ -40,22 +40,17 @@ public class MealRepositoryCrudImpl implements MealRepository {
     }
 
     @Override
-    public void removeMeal(Meal meal) {
-        map.remove(meal.getId());
-    }
-
-    @Override
-    public void removeMeal(long id) {
+    public void removeMeal(Long id) {
         map.remove(id);
     }
 
     @Override
-    public Meal getMeal(long id) {
+    public Meal getMeal(Long id) {
         return map.get(id);
     }
 
     @Override
-    public List<Meal> getAll() {
+    public List<Meal> getAllMeals() {
         return new ArrayList<>(map.values());
     }
 }
