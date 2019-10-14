@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="WEB-INF/tags/DateFormat.tld" prefix="f" %>
+<%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -26,10 +26,10 @@
         </thead>
         <tbody>
         <tr>
-            <jsp:useBean id="mealList" scope="request" type="java.util.List"/>
-            <c:forEach items="${mealList}" var="meal">
-        <tr style="color: ${meal.excess == false ? '#28a745' : '#b21f2d'}">
-            <td>${f:formatLocalDateTime(meal.dateTime, 'dd.MM.yyyy HH:mm')}</td>
+            <c:forEach items="${meals}" var="meal">
+                <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.MealTo"/>
+        <tr style="color: ${meal.excess ? 'red' : 'green'}">
+            <td>${fn:formatDateTime(meal.dateTime)}</td>
             <td>${meal.description}</td>
             <td>${meal.calories}</td>
         </tr>
