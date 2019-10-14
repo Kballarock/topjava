@@ -1,4 +1,3 @@
-<%--suppress ELValidationInJSP --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -12,20 +11,16 @@
 <body>
 
 <div class="edit-clean" style="min-height: 928px; ">
-
+    <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>
     <form method="post" action="meals" style="max-width: 453px;">
-        <h3 style="text-align: center">${not empty meal.id ? "Update meal": "Add new meal"}</h3>
+        <h3>${param.action == 'create' ? 'Create meal' : 'Edit meal'}</h3>
 
-        <c:if test="${not empty meal.id}">
-            <div class="form-group">
-                <label for="id">Id</label>
-                <input id="id" readonly class="form-control" required name="id" value="${meal.id}">
-            </div>
-        </c:if>
+        <input type="hidden" name="id" value="${meal.id}">
 
         <div class="form-group">
             <label for="date">Date and time</label>
-            <input id="date" class="form-control" type="datetime-local" required name="date" value="${meal.dateTime}">
+            <input id="date" class="form-control" type="datetime-local" required name="dateTime"
+                   value="${meal.dateTime}">
         </div>
 
         <div class="form-group">
