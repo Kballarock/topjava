@@ -1,51 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <html>
 <head>
     <title>Meal</title>
-    <style>
-        dl {
-            background: none repeat scroll 0 0 #FAFAFA;
-            margin: 8px 0;
-            padding: 0;
-        }
-
-        dt {
-            display: inline-block;
-            width: 170px;
-        }
-
-        dd {
-            display: inline-block;
-            margin-left: 8px;
-            vertical-align: top;
-        }
-    </style>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/myStyle.css" rel="stylesheet">
 </head>
 <body>
-<section>
-    <h3><a href="index.html">Home</a></h3>
-    <hr>
-    <h2>${param.action == 'create' ? 'Create meal' : 'Edit meal'}</h2>
+<div class="edit-clean" style="min-height: 928px; ">
     <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>
-    <form method="post" action="meals">
+    <form method="post" action="meals" style="max-width: 453px;">
+        <h3>${param.action == 'create' ? 'Create meal' : 'Edit meal'}</h3>
+
         <input type="hidden" name="id" value="${meal.id}">
-        <dl>
-            <dt>DateTime:</dt>
-            <dd><input type="datetime-local" value="${meal.dateTime}" name="dateTime" required></dd>
-        </dl>
-        <dl>
-            <dt>Description:</dt>
-            <dd><input type="text" value="${meal.description}" size=40 name="description" required></dd>
-        </dl>
-        <dl>
-            <dt>Calories:</dt>
-            <dd><input type="number" value="${meal.calories}" name="calories" required></dd>
-        </dl>
-        <button type="submit">Save</button>
-        <button onclick="window.history.back()" type="button">Cancel</button>
+
+        <div class="form-group">
+            <label for="date">Date and time</label>
+            <input id="date" class="form-control" type="datetime-local" required name="dateTime"
+                   value="${meal.dateTime}">
+        </div>
+
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input id="desc" class="form-control" type="text" required name="description" value="${meal.description}">
+        </div>
+
+        <div class="form-group">
+            <label for="calories">Calories</label>
+            <input id="calories" class="form-control" type="number" required name="calories" value="${meal.calories}">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success btn-block" type="submit">Save</button>
+        </div>
+
+        <div align="center">
+            <a href="meals?action=mealList" style="font-size: 18px;color: rgb(37,137,237); margin-right: 20px"> <<
+                Back</a>
+            <a href="index.html" style="font-size: 18px;color: rgb(37,137,237);">Home >></a>
+        </div>
     </form>
-</section>
+</div>
 </body>
 </html>
