@@ -26,6 +26,7 @@
 
         <!--DB-->
         <postgresql.version>42.2.8</postgresql.version>
+        <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
         <!--    Tests  -->
         <junit.version>4.12</junit.version>
 
@@ -182,12 +183,12 @@
         </profile>
 
         <profile>
-            <id>postgres</id>
+            <id>mysql</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <version>${postgresql.version}</version>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${mysql-connector-java.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.tomcat</groupId>
