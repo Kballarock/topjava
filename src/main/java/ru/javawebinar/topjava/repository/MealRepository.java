@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.repository;
 
+import org.springframework.lang.NonNull;
 import ru.javawebinar.topjava.model.Meal;
 
 import java.time.LocalDateTime;
@@ -19,5 +20,9 @@ public interface MealRepository {
     List<Meal> getAll(int userId);
 
     // ORDERED dateTime desc
-    List<Meal> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
+    List<Meal> getBetweenInclusive(@NonNull LocalDateTime startDate, @NonNull LocalDateTime endDate, int userId);
+
+    default Meal getWithUser(int id, int userId) {
+        throw new UnsupportedOperationException();
+    }
 }
