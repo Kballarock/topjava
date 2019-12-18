@@ -9,14 +9,14 @@ public class Profiles {
     public static final String REPOSITORY_IMPLEMENTATION = DATAJPA;
 
     public static final String
-            POSTGRES_DB = "postgres",
+            MY_SQL = "mysql",
             HSQL_DB = "hsqldb";
 
     //  Get DB profile depending of DB driver in classpath
     public static String getActiveDbProfile() {
         try {
-            Class.forName("org.postgresql.Driver");
-            return POSTGRES_DB;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return MY_SQL;
         } catch (ClassNotFoundException ex) {
             try {
                 Class.forName("org.hsqldb.jdbcDriver");
