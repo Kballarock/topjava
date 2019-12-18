@@ -2,7 +2,6 @@ package ru.javawebinar.topjava.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
@@ -32,7 +31,7 @@ public abstract class AbstractUserServiceTest extends AbstractServiceTest {
 
     @Test
     void duplicateMailCreate() throws Exception {
-        assertThrows(DataAccessException.class, () ->
+        assertThrows(Exception.class, () ->
                 service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass",  2000, Role.ROLE_USER)));
     }
 
